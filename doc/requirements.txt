@@ -1,0 +1,28 @@
+Recipes Application
+===================
+
+Be able to store Recipes
+Be able to list Recipes
+Be able to search for Recipes
+  - by name
+  - by ingredients
+  - by category
+  - by some sort of unique identifier
+Be able to create a Recipe
+Be able to save a recipe
+Be able to delete a recipe
+Be able to show a single recipe "nicely"
+
+What is a Recipe
+================
+Attributes:
+name : String
+ingredients : []
+instructions : []
+difficulty : Integer
+time : Integer
+author : { first_name:, last_name: }
+batch_size : Integer
+
+
+

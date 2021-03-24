@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+
+require "./controllers/RecipesController"
+
+begin
+    print "Enter a command: (list, new, delete, quit) "
+    request, param = gets.chomp.downcase.strip.split(' ')
+
+    if [ 'list', 'l' ].include? request
+        RecipesController::index
+    end
+
+    if [ 'new', 'n' ].include? request
+        RecipesController::create
+    end
+
+    if [ 'delete', 'd' ].include? request
+        p param
+        RecipesController::destroy param
+    end
+end until [ 'quit', 'q'].include? request
