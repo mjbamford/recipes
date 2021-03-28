@@ -1,22 +1,15 @@
 require_relative "../models/Recipe"
+require_relative "../views/recipes/index"
+require_relative "../views/recipes/create"
 
-class RecipesController
+module RecipesController
     def self.index
         recipes = Recipe::all
-        if recipes.length > 0
-            puts "-- All Recipes"
-            puts Recipe::all
-        else
-            puts "-- No Recipes :("
-        end
+        Views::Recipes.index(recipes)
     end
 
     def self.create
-        print "Name: "
-        name = gets.chomp.strip
-        print "Difficulty: "
-        difficulty = gets.chomp.strip.to_i
-
+        name, difficulty = Views::Recipes.create
         recipe = Recipe.new name, difficulty
         recipe.save
     end

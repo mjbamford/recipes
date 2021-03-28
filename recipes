@@ -15,7 +15,6 @@ begin
     end
 
     if [ 'delete', 'd' ].include? request
-        p param
         RecipesController::destroy param
     end
 end until [ 'quit', 'q'].include? request
