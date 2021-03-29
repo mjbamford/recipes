@@ -1,20 +1,9 @@
 #!/usr/bin/env ruby
 
-require "./controllers/RecipesController"
+require "./routes"
 
 begin
     print "Enter a command: (list, new, delete, quit) "
     request, param = gets.chomp.downcase.strip.split(' ')
-
-    if [ 'list', 'l' ].include? request
-        RecipesController::index
-    end
-
-    if [ 'new', 'n' ].include? request
-        RecipesController::create
-    end
-
-    if [ 'delete', 'd' ].include? request
-        RecipesController::destroy param
-    end
+    Routes.dispatch(request, param)
 end until [ 'quit', 'q'].include? request
