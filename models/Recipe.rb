@@ -1,6 +1,6 @@
 class Recipe
-    attr_reader :id, :name, :ingredients, :instructions
-    attr_accessor :difficulty
+    attr_reader :name, :ingredients, :instructions
+    attr_accessor :id, :difficulty
 
     RECIPES = []
 
@@ -42,6 +42,9 @@ class Recipe
 
         idx = RECIPES.index { |recipe| recipe&.id == @id }
         @id = RECIPES[idx] = nil
+
+        RECIPES.compact!
+        RECIPES.each.with_index { |recipe, index| recipe.id = index + 1 }
     end
 
     def to_s
