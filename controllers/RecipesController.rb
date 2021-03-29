@@ -1,11 +1,17 @@
 require_relative "../models/Recipe"
 require_relative "../views/recipes/index"
 require_relative "../views/recipes/create"
+require_relative "../views/recipes/show"
 
 module RecipesController
     def self.index
         recipes = Recipe::all
         Views::Recipes.index(recipes)
+    end
+
+    def self.show(id)
+        recipe = Recipe.find(id)
+        Views::Recipes.show(recipe)
     end
 
     def self.create
