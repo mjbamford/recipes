@@ -9,7 +9,7 @@ module Routes
         when /^n(ew)*/
             RecipesController::create
         when /^d(elete)*/
-            RecipesController::destroy param
+            RecipesController::destroy(param)
         end
     end
 end
