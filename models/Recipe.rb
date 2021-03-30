@@ -1,10 +1,9 @@
-require "yaml"
+require 'yaml'
+require_relative './ActiveRecord'
 
-class Recipe
-    attr_reader :name, :ingredients, :instructions
-    attr_accessor :id, :difficulty
-
-    RECIPES = YAML.load(File.read('recipes.yml'))
+class Recipe < ActiveRecord
+    attr_reader :id, :name, :ingredients, :instructions
+    attr_accessor :difficulty
 
     @number_of_instances = 0
 
@@ -34,14 +33,13 @@ class Recipe
         @difficulty = difficulty
     end
 
-    def save
-        self.class::number_of_instances = self.class.number_of_instances + 1
-        RECIPES << self
-        File.open('recipes.yml', 'w') do |file|
-
-            file.write(RECIPES.to_yaml)
-        end
-    end
+    # def save
+    #     self.class::number_of_instances = self.class.number_of_instances + 1
+    #     RECIPES << self
+    #     File.open('recipes.yml', 'w') do |file| 
+    #         file.write(RECIPES.to_yaml)
+    #     end
+    # end
 
     def delete
         return if @id.nil?
