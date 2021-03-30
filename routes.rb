@@ -1,4 +1,3 @@
-
 require "./controllers/RecipesController"
 
 module Routes
