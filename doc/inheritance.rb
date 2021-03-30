@@ -1,10 +1,10 @@
 class C0
     def who_am_i?
-        self.class.log('who_am_i?', self)
+        self.class.log('CO#who_am_i?', self)
     end
 
     def self.who_am_i?
-        log('self.who_am_i?', self)
+        log('C0::self.who_am_i?', self)
     end
 
     def self.log(method_name, message)
@@ -19,8 +19,12 @@ class C1 < C0
         puts "*** " * 3
     end
 
+    def self.who_am_i?
+        log('C1::who_am_i?', self)
+    end
+
     def who_am_i?
-        self.class.log('C1#who_am_i', self)
+        self.class.log('C1#who_am_i?', self)
     end
 end
 
