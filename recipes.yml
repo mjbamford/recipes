@@ -1,0 +1,7 @@
+---
+- !ruby/object:Recipe
+  id: 1
+  name: cake
+  ingredients: []
+  instructions: []
+  difficulty: 1

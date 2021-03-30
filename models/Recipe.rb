@@ -1,8 +1,10 @@
+require "yaml"
+
 class Recipe
     attr_reader :name, :ingredients, :instructions
     attr_accessor :id, :difficulty
 
-    RECIPES = []
+    RECIPES = YAML.load(File.read('recipes.yml'))
 
     @number_of_instances = 0
 
@@ -35,6 +37,10 @@ class Recipe
     def save
         self.class::number_of_instances = self.class.number_of_instances + 1
         RECIPES << self
+        File.open('recipes.yml', 'w') do |file|
+
+            file.write(RECIPES.to_yaml)
+        end
     end
 
     def delete
