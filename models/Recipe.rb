@@ -1,8 +1,11 @@
 require 'yaml'
 require_relative './ActiveRecord'
+require './lib/Logger'
 
 class Recipe < ActiveRecord
-    attr_reader :id, :name, :ingredients, :instructions
+    include Logger
+
+    attr_reader :name, :ingredients, :instructions
     attr_accessor :difficulty
 
     @number_of_instances = 0
@@ -15,44 +18,19 @@ class Recipe < ActiveRecord
         @number_of_instances = value
     end
 
-    def self.find(id)
-        return unless id 
-
-        RECIPES.detect { |recipe| recipe.id == id.to_i }
-    end
-    
-    def self.all
-        RECIPES
-    end
-
     def initialize(name, difficulty = nil)
-        @id = RECIPES.length + 1
         @name = name
         @ingredients = []
         @instructions = []
         @difficulty = difficulty
-    end
-
-    # def save
-    #     self.class::number_of_instances = self.class.number_of_instances + 1
-    #     RECIPES << self
-    #     File.open('recipes.yml', 'w') do |file| 
-    #         file.write(RECIPES.to_yaml)
-    #     end
-    # end
-
-    def delete
-        return if @id.nil?
-
-        idx = RECIPES.index { |recipe| recipe&.id == @id }
-        @id = RECIPES[idx] = nil
+        log "Created an instance of Recipe"
+        log "Total Recipes created: #{self.class.number_of_instances += 1}"
     end
 
     def to_s
         [ 
-            id,
-            "#{@name}",
-            "Difficulty:#{@difficulty}",
+            "Name: #{@name}",
+            "Difficulty: #{@difficulty}",
         ].join(' ')
     end
 end

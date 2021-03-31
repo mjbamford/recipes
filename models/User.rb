@@ -1,10 +1,13 @@
 require './models/ActiveRecord'
+require './lib/Logger'
 
 class User < ActiveRecord
-    attr_reader :id
+    include Logger
+
     attr_accessor :name
 
-    def initialize
-        @id = 666
+    def initialize(name = 'Anonymous')
+        @name = name
+        log "Created a user with name #{@name}"
     end
 end
