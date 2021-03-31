@@ -7,12 +7,16 @@ class ActiveRecord
         "#{name.downcase}s.yml"
     end
 
-    def self.all
+    def self.db
         @db ||= begin
             YAML.load(File.read(file_name))
         rescue
             []
         end
+    end
+
+    def self.all
+        db
     end
 
     def self.find(id)
