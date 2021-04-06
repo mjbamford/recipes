@@ -4,7 +4,11 @@ class ActiveRecord
     attr_reader :id
 
     def self.file_name
-        "#{name.downcase}s.yml"
+        if ENV['APP_ENV'] == 'test'
+            "#{name.downcase}s-test.yml"
+        else
+            "#{name.downcase}s.yml"
+        end
     end
 
     def self.db
