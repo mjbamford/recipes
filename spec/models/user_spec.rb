@@ -3,6 +3,13 @@ require "./models/User"
 RSpec.describe User do
     it { is_expected.to respond_to :name }
     it { is_expected.to respond_to :save }
+    it { is_expected.not_to be_admin }
+
+    describe "#name" do
+        subject { User.new.name }
+        it { is_expected.not_to be_nil }
+        it { is_expected.to match /anonymous/i }
+    end
 end
 
 RSpec.describe "User" do

@@ -10,4 +10,8 @@ class User < ActiveRecord
         @name = name
         log "Created a user with name #{@name}"
     end
+
+    def admin?
+        false
+    end
 end
